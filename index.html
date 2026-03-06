@@ -29,7 +29,7 @@
             max-width: 350px;
             margin: 0 auto;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
             border: 1px solid #efebe9;
@@ -39,7 +39,7 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-radius: 3px;
+            border-radius: 8px;
         }
 
         .buttons {
@@ -61,7 +61,7 @@
             background: #5d4037;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 12px;
@@ -83,18 +83,19 @@
             max-width: 350px;
             margin: 15px auto;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             text-align: center;
         }
 
         input.user-input {
             width: 90%;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 12px;
+            margin: 8px 0;
             border: 1px solid #d7ccc8;
-            border-radius: 4px;
+            border-radius: 8px;
             font-family: inherit;
+            outline: none;
         }
 
         #okno_fon {
@@ -104,7 +105,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -112,11 +113,17 @@
 
         .vsplivaushee_okno {
             background: white;
-            width: 80%;
-            max-width: 300px;
-            padding: 20px;
-            border-radius: 10px;
+            width: 85%;
+            max-width: 320px;
+            padding: 25px;
+            border-radius: 15px;
             border: 2px solid #5d4037;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
         }
     </style>
 </head>
@@ -137,38 +144,38 @@
 
         <div class="buttons">
             <button class="btn" id="minus">-</button>
-            <span id="count" style="font-weight: bold; font-size: 20px;">1</span>
+            <span id="count" style="font-weight: bold; font-size: 22px;">1</span>
             <button class="btn" id="plus">+</button>
         </div>
-        <button class="btn" id="buy" style="width: 100%;">В корзину</button>
+        <button class="btn" id="buy" style="width: 100%; font-weight: bold;">В корзину</button>
     </div>
 
     <div class="cart-info">
-        🛒 В корзине товаров: <span id="cartCount">0</span>
+        🛒 В корзине: <span id="cartCount">0</span> тов.
         <button class="btn" id="clearCart" style="background:#c62828; margin-left:10px; font-size:10px;">Сброс</button>
     </div>
 
     <div class="total-box">
-        Сумма: <span id="totalSum">0</span> ₽
+        <b>Итого к оплате: <span id="totalSum">0</span> ₽</b>
     </div>
 
     <div class="user-form">
-        <h4>Куда доставить?</h4>
-        <input class="user-input" id="username" placeholder="Имя">
-        <input class="user-input" id="userphone" placeholder="Телефон">
-        <input class="user-input" id="useraddress" placeholder="Адрес">
-        <button id="usersubmit" class="btn" style="width: 100%; margin-top: 10px; background: #2e7d32;">Заказать</button>
+        <h4 style="margin-top: 0;">Оформление заказа</h4>
+        <input class="user-input" id="username" placeholder="Ваше имя">
+        <input class="user-input" id="userphone" placeholder="Номер телефона">
+        <input class="user-input" id="useraddress" placeholder="Адрес доставки">
+        <button id="usersubmit" class="btn" style="width: 100%; margin-top: 10px; background: #2e7d32; font-weight: bold;">Оформить заказ</button>
     </div>
 
     <div id="okno_fon">
         <div class="vsplivaushee_okno">
-            <h3 style="text-align: center;">Проверьте данные</h3>
-            <div id="vash_zakaz_text" style="font-size: 14px; margin-bottom: 15px;"></div>
+            <h3 style="text-align: center; margin-top: 0;">Проверьте заказ</h3>
+            <div id="vash_zakaz_text" style="font-size: 14px; line-height: 1.5;"></div>
             <hr>
-            <div id="vash_spisok" style="font-size: 14px; margin: 10px 0;"></div>
-            <p style="font-weight: bold;">Итого: <span id="itog_v_okne"></span> руб.</p>
+            <div id="vash_spisok" style="font-size: 14px; max-height: 150px; overflow-y: auto;"></div>
+            <p style="font-size: 18px; text-align: right;"><b>Сумма: <span id="itog_v_okne"></span> ₽</b></p>
 
-            <button id="confirm_btn" class="btn" style="width: 100%; background: #2e7d32; margin-bottom: 5px;">Всё верно!</button>
+            <button id="confirm_btn" class="btn" style="width: 100%; background: #2e7d32; margin-bottom: 8px;">Все верно!</button>
             <button id="cancel_btn" class="btn" style="width: 100%; background: #757575;">Вернуться</button>
         </div>
     </div>
@@ -179,44 +186,13 @@
         tg.expand();
 
         const items = [
-            { 
-                id: "medovik", 
-                name: "Торт «Медовик»", 
-                desc: "Классические медовые коржи", 
-                price: 120, 
-                weight: "100 г", 
-                photo: "https://images.news.ru/photo/4146bb54-1e90-11ef-9a32-02420a0000c9_780.jpg" 
-            },
-            { 
-                id: "napoleon", 
-                name: "Торт «Наполеон»", 
-                desc: "Слоеное тесто с кремом", 
-                price: 110, 
-                weight: "120 г", 
-                photo: "https://img.povar.ru/mobile/e3/3c/10/65/tort_napoleon_iz_sloyonogo_testa-861691.png" 
-            },
-            { 
-                id: "borodinsky", 
-                name: "Хлеб «Бородинский»", 
-                desc: "Ржаной на закваске", 
-                price: 54, 
-                weight: "400 г", 
-                photo: "https://cdn.metro-cc.ru/ru/ru_pim_97076001001_02.png" 
-            },
-            { 
-                id: "ulitka", 
-                name: "Улитка с орехом", 
-                desc: "Сдобная булочка", 
-                price: 89, 
-                weight: "110 г", 
-                photo: "https://avatars.mds.yandex.net/i?id=edcddfb70702311f90d9323bd4d5c2bf_l-9107119-images-thumbs&n=13" 
-            }
+            { id: "medovik", name: "Торт «Медовик»", desc: "Классические медовые коржи", price: 120, weight: "100 г", photo: "https://images.news.ru/photo/4146bb54-1e90-11ef-9a32-02420a0000c9_780.jpg" },
+            { id: "napoleon", name: "Торт «Наполеон»", desc: "Слоеное тесто с кремом", price: 110, weight: "120 г", photo: "https://img.povar.ru/mobile/e3/3c/10/65/tort_napoleon_iz_sloyonogo_testa-861691.png" },
+            { id: "borodinsky", name: "Хлеб «Бородинский»", desc: "Ржаной на закваске", price: 54, weight: "400 г", photo: "https://cdn.metro-cc.ru/ru/ru_pim_97076001001_02.png" },
+            { id: "ulitka", name: "Улитка с орехом", desc: "Сдобная булочка", price: 89, weight: "110 г", photo: "https://avatars.mds.yandex.net/i?id=edcddfb70702311f90d9323bd4d5c2bf_l-9107119-images-thumbs&n=13" }
         ];
 
-        let currentItem = 0;
-        let count = 1;
-        let cart = {};
-        let totalSum = 0;
+        let currentItem = 0, count = 1, cart = {}, totalSum = 0;
 
         function renderItem() {
             const item = items[currentItem];
@@ -229,39 +205,21 @@
             document.getElementById("count").innerText = count;
         }
 
-        document.getElementById("plus").onclick = () => {
-            count++;
-            document.getElementById("count").innerText = count;
-        };
-
-        document.getElementById("minus").onclick = () => {
-            if (count > 1) {
-                count--;
-                document.getElementById("count").innerText = count;
-            }
-        };
-
-        document.getElementById("next").onclick = () => {
-            currentItem = (currentItem + 1) % items.length;
-            renderItem();
-        };
-
-        document.getElementById("prv").onclick = () => {
-            currentItem = (currentItem - 1 + items.length) % items.length;
-            renderItem();
-        };
+        document.getElementById("plus").onclick = () => { count++; document.getElementById("count").innerText = count; };
+        document.getElementById("minus").onclick = () => { if (count > 1) { count--; document.getElementById("count").innerText = count; } };
+        document.getElementById("next").onclick = () => { currentItem = (currentItem + 1) % items.length; renderItem(); };
+        document.getElementById("prv").onclick = () => { currentItem = (currentItem - 1 + items.length) % items.length; renderItem(); };
 
         document.getElementById("buy").onclick = () => {
             const item = items[currentItem];
             if (!cart[item.id]) cart[item.id] = 0;
             cart[item.id] += count;
             updateCartTotals();
-            tg.HapticFeedback.impactOccurred("light");
+            tg.HapticFeedback.impactOccurred("medium");
         };
 
         function updateCartTotals() {
-            let totalItems = 0;
-            totalSum = 0;
+            let totalItems = 0; totalSum = 0;
             for (let id in cart) {
                 let product = items.find(i => i.id === id);
                 totalItems += cart[id];
@@ -271,56 +229,52 @@
             document.getElementById("totalSum").innerText = totalSum;
         }
 
-        document.getElementById("clearCart").onclick = () => {
-            cart = {};
-            updateCartTotals();
-        };
+        document.getElementById("clearCart").onclick = () => { cart = {}; updateCartTotals(); };
 
         document.getElementById("usersubmit").onclick = function() {
             let fio = document.getElementById("username").value;
             let tel = document.getElementById("userphone").value;
             let adr = document.getElementById("useraddress").value;
 
-            if (fio === "" || tel === "" || totalSum === 0) {
-                alert("Заполните данные и добавьте булочки в корзину!");
+            if (!fio || !tel || totalSum === 0) {
+                alert("Пожалуйста, заполните имя, телефон и добавьте товары в корзину!");
                 return;
             }
 
             document.getElementById("vash_zakaz_text").innerHTML = 
-                "<b>Имя:</b> " + fio + "<br><b>Тел:</b> " + tel + "<br><b>Адрес:</b> " + adr;
+                `<b>👤 Клиент:</b> ${fio}<br><b>📞 Тел:</b> ${tel}<br><b>🏠 Адрес:</b> ${adr}`;
 
             let spisok = "";
             for (let id in cart) {
                 let product = items.find(i => i.id === id);
-                spisok += "• " + product.name + " (" + cart[id] + " шт.)<br>";
+                spisok += `• ${product.name} — ${cart[id]} шт.<br>`;
             }
             document.getElementById("vash_spisok").innerHTML = spisok;
             document.getElementById("itog_v_okne").innerText = totalSum;
             document.getElementById("okno_fon").style.display = "flex";
         };
 
-        document.getElementById("cancel_btn").onclick = () => {
-            document.getElementById("okno_fon").style.display = "none";
-        };
+        document.getElementById("cancel_btn").onclick = () => { document.getElementById("okno_fon").style.display = "none"; };
 
         document.getElementById("confirm_btn").onclick = () => {
             let fio = document.getElementById("username").value;
             let tel = document.getElementById("userphone").value;
             let adr = document.getElementById("useraddress").value;
 
-            let resultText = "🍞 ЗАКАЗ ВОЛЬЧЕКА\n" +
-                             "Клиент: " + fio + "\n" +
-                             "Тел: " + tel + "\n" +
-                             "Адрес: " + adr + "\n" +
-                             "---\n";
+            let resultText = `📦 НОВЫЙ ЗАКАЗ\n\n👤 Имя: ${fio}\n📞 Тел: ${tel}\n🏠 Адрес: ${adr}\n\n🛒 Состав заказа:\n`;
             
             for (let id in cart) {
                 let product = items.find(i => i.id === id);
-                resultText += "• " + product.name + ": " + cart[id] + " шт.\n";
+                resultText += `— ${product.name}: ${cart[id]} шт.\n`;
             }
             
-            resultText += "---\nИтого: " + totalSum + " руб.";
+            resultText += `\n💰 Итого: ${totalSum} руб.`;
+            
+            // Отправляем данные боту
             tg.sendData(resultText);
+            
+            // Закрываем приложение
+            tg.close();
         };
 
         renderItem();
