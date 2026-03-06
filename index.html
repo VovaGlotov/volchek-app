@@ -1,266 +1,329 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Булочные Ф. Вольчека</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Булочные Ф. Вольчека</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
-    body {
-      background-color: #fdf5e6;
-      font-family: 'EB Garamond', serif;
-      padding: 20px;
-      color: #3e2723;
-      margin: 0;
-    }
+        body {
+            background-color: #fdf5e6;
+            font-family: 'EB Garamond', serif;
+            padding: 20px;
+            color: #3e2723;
+            margin: 0;
+        }
 
-    h1.title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      text-align: center;
-      color: #5d4037;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+        h1.title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: center;
+            color: #5d4037;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    .card {
-      background: white;
-      max-width: 350px;
-      margin: 0 auto;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-align: center;
-      border: 1px solid #efebe9;
-    }
+        .card {
+            background: white;
+            max-width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #efebe9;
+        }
 
-    .card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 3px;
-    }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
 
-    .buttons {
-      margin: 15px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-    }
+        .buttons {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
 
-    .price {
-      color: #795548;
-      font-weight: bold;
-      font-size: 1.4em;
-    }
+        .price {
+            color: #795548;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
 
-    .btn {
-      padding: 10px 20px;
-      background: #5d4037;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-size: 12px;
-      transition: 0.3s;
-    }
+        .btn {
+            padding: 10px 20px;
+            background: #5d4037;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: 0.3s;
+        }
 
-    .btn:hover { background: #8d6e63; }
+        .btn:hover {
+            background: #8d6e63;
+        }
 
-    .nav-btns { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
 
-    .cart-info, .total-box, .user-form {
-      background: white;
-      max-width: 350px;
-      margin: 15px auto;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      text-align: center;
-    }
+        .cart-info, .total-box, .user-form {
+            background: white;
+            max-width: 350px;
+            margin: 15px auto;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
 
-    input.user-input {
-      width: 90%;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid #d7ccc8;
-      border-radius: 4px;
-      font-family: inherit;
-    }
+        input.user-input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #d7ccc8;
+            border-radius: 4px;
+            font-family: inherit;
+        }
 
-    #okno_fon {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+        #okno_fon {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .vsplivaushee_okno {
-      background: white;
-      width: 80%;
-      max-width: 300px;
-      padding: 20px;
-      border-radius: 10px;
-      border: 2px solid #5d4037;
-    }
-  </style>
+        .vsplivaushee_okno {
+            background: white;
+            width: 80%;
+            max-width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #5d4037;
+        }
+    </style>
 </head>
 <body>
 
-  <h1 class="title">Булочные Ф. Вольчека</h1>
+    <h1 class="title">Булочные Ф. Вольчека</h1>
 
-  <div class="card">
-    <div class="nav-btns">
-      <button class="btn" id="prv">←</button>
-      <button class="btn" id="next">→</button>
+    <div class="card">
+        <div class="nav-btns">
+            <button class="btn" id="prv">←</button>
+            <button class="btn" id="next">→</button>
+        </div>
+        <img id="photo" src="" alt="Выпечка">
+        <h3 id="name">Загрузка...</h3>
+        <p id="desc">Описание...</p>
+        <div id="weight" style="font-style: italic; margin-bottom: 10px;">Вес: -</div>
+        <div class="price" id="price">0 ₽</div>
+
+        <div class="buttons">
+            <button class="btn" id="minus">-</button>
+            <span id="count" style="font-weight: bold; font-size: 20px;">1</span>
+            <button class="btn" id="plus">+</button>
+        </div>
+        <button class="btn" id="buy" style="width: 100%;">В корзину</button>
     </div>
-    <img id="photo" src="" alt="Выпечка">
-    <h3 id="name">Загрузка...</h3>
-    <p id="desc">Описание...</p>
-    <div id="weight" style="font-style: italic; margin-bottom: 10px;">Вес: -</div>
-    <div class="price" id="price">0 ₽</div>
 
-    <div class="buttons">
-      <button class="btn" id="minus">-</button>
-      <span id="count" style="font-weight: bold; font-size: 20px;">1</span>
-      <button class="btn" id="plus">+</button>
+    <div class="cart-info">
+        🛒 В корзине товаров: <span id="cartCount">0</span>
+        <button class="btn" id="clearCart" style="background:#c62828; margin-left:10px; font-size:10px;">Сброс</button>
     </div>
-    <button class="btn" id="buy" style="width: 100%;">В корзину</button>
-  </div>
 
-  <div class="cart-info">
-    🛒 В корзине товаров: <span id="cartCount">0</span>
-    <button class="btn" id="clearCart" style="background:#c62828; margin-left:10px; font-size:10px;">Сброс</button>
-  </div>
-
-  <div class="total-box">Сумма: <span id="totalSum">0</span> ₽</div>
-
-  <div class="user-form">
-    <h4>Куда доставить?</h4>
-    <input class="user-input" id="username" placeholder="Имя">
-    <input class="user-input" id="userphone" placeholder="Телефон">
-    <input class="user-input" id="useraddress" placeholder="Адрес">
-    <button id="usersubmit" class="btn" style="width: 100%; margin-top: 10px; background: #2e7d32;">Заказать</button>
-  </div>
-
-  <div id="okno_fon">
-    <div class="vsplivaushee_okno">
-      <h3 style="text-align: center;">Проверьте данные</h3>
-      <div id="vash_zakaz_text" style="font-size: 14px; margin-bottom: 15px;"></div>
-      <hr>
-      <div id="vash_spisok" style="font-size: 14px; margin: 10px 0;"></div>
-      <p style="font-weight: bold;">Итого: <span id="itog_v_okne"></span> руб.</p>
-
-      <button id="confirm_btn" class="btn" style="width: 100%; background: #2e7d32; margin-bottom: 5px;">Всё верно!</button>
-      <button id="cancel_btn" class="btn" style="width: 100%; background: #757575;">Вернуться</button>
+    <div class="total-box">
+        Сумма: <span id="totalSum">0</span> ₽
     </div>
-  </div>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script>
-    let tg = window.Telegram.WebApp;
-    tg.expand();
+    <div class="user-form">
+        <h4>Куда доставить?</h4>
+        <input class="user-input" id="username" placeholder="Имя">
+        <input class="user-input" id="userphone" placeholder="Телефон">
+        <input class="user-input" id="useraddress" placeholder="Адрес">
+        <button id="usersubmit" class="btn" style="width: 100%; margin-top: 10px; background: #2e7d32;">Заказать</button>
+    </div>
 
-    const items = [
-      { id: "medovik", name: "Торт «Медовик»", desc: "Классические медовые коржи", price: 120, weight: "100 г", photo: "https://images.news.ru/photo/4146bb54-1e90-11ef-9a32-02420a0000c9_780.jpg" },
-      { id: "napoleon", name: "Торт «Наполеон»", desc: "Слоеное тесто с кремом", price: 110, weight: "120 г", photo: "https://img.povar.ru/mobile/e3/3c/10/65/tort_napoleon_iz_sloyonogo_testa-861691.png" },
-      { id: "borodinsky", name: "Хлеб «Бородинский»", desc: "Ржаной на закваске", price: 54, weight: "400 г", photo: "https://cdn.metro-cc.ru/ru/ru_pim_97076001001_02.png" },
-      { id: "ulitka", name: "Улитка с орехом", desc: "Сдобная булочка", price: 89, weight: "110 г", photo: "https://avatars.mds.yandex.net/i?id=edcddfb70702311f90d9323bd4d5c2bf_l-9107119-images-thumbs&n=13" }
-    ];
+    <div id="okno_fon">
+        <div class="vsplivaushee_okno">
+            <h3 style="text-align: center;">Проверьте данные</h3>
+            <div id="vash_zakaz_text" style="font-size: 14px; margin-bottom: 15px;"></div>
+            <hr>
+            <div id="vash_spisok" style="font-size: 14px; margin: 10px 0;"></div>
+            <p style="font-weight: bold;">Итого: <span id="itog_v_okne"></span> руб.</p>
 
-    let currentItem = 0;
-    let count = 1;
-    let cart = {};
-    let totalSum = 0;
+            <button id="confirm_btn" class="btn" style="width: 100%; background: #2e7d32; margin-bottom: 5px;">Всё верно!</button>
+            <button id="cancel_btn" class="btn" style="width: 100%; background: #757575;">Вернуться</button>
+        </div>
+    </div>
 
-    function renderItem() {
-      const item = items[currentItem];
-      document.getElementById("name").innerText = item.name;
-      document.getElementById("desc").innerText = item.desc;
-      document.getElementById("price").innerText = item.price + " ₽";
-      document.getElementById("weight").innerText = "Вес: " + item.weight;
-      document.getElementById("photo").src = item.photo;
-      count = 1;
-      document.getElementById("count").innerText = count;
-    }
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
 
-    document.getElementById("plus").onclick = () => { count++; document.getElementById("count").innerText = count; };
-    document.getElementById("minus").onclick = () => { if(count > 1) { count--; document.getElementById("count").innerText = count; } };
-    document.getElementById("next").onclick = () => { currentItem = (currentItem + 1) % items.length; renderItem(); };
-    document.getElementById("prv").onclick = () => { currentItem = (currentItem - 1 + items.length) % items.length; renderItem(); };
+        const items = [
+            { 
+                id: "medovik", 
+                name: "Торт «Медовик»", 
+                desc: "Классические медовые коржи", 
+                price: 120, 
+                weight: "100 г", 
+                photo: "https://images.news.ru/photo/4146bb54-1e90-11ef-9a32-02420a0000c9_780.jpg" 
+            },
+            { 
+                id: "napoleon", 
+                name: "Торт «Наполеон»", 
+                desc: "Слоеное тесто с кремом", 
+                price: 110, 
+                weight: "120 г", 
+                photo: "https://img.povar.ru/mobile/e3/3c/10/65/tort_napoleon_iz_sloyonogo_testa-861691.png" 
+            },
+            { 
+                id: "borodinsky", 
+                name: "Хлеб «Бородинский»", 
+                desc: "Ржаной на закваске", 
+                price: 54, 
+                weight: "400 г", 
+                photo: "https://cdn.metro-cc.ru/ru/ru_pim_97076001001_02.png" 
+            },
+            { 
+                id: "ulitka", 
+                name: "Улитка с орехом", 
+                desc: "Сдобная булочка", 
+                price: 89, 
+                weight: "110 г", 
+                photo: "https://avatars.mds.yandex.net/i?id=edcddfb70702311f90d9323bd4d5c2bf_l-9107119-images-thumbs&n=13" 
+            }
+        ];
 
-    document.getElementById("buy").onclick = () => {
-      const item = items[currentItem];
-      if (!cart[item.id]) cart[item.id] = 0;
-      cart[item.id] += count;
-      updateCartTotals();
-      tg.HapticFeedback.impactOccurred("light");
-    };
+        let currentItem = 0;
+        let count = 1;
+        let cart = {};
+        let totalSum = 0;
 
-    function updateCartTotals() {
-      let totalItems = 0;
-      totalSum = 0;
-      for (let id in cart) {
-        let product = items.find(i => i.id === id);
-        totalItems += cart[id];
-        totalSum += cart[id] * product.price;
-      }
-      document.getElementById("cartCount").innerText = totalItems;
-      document.getElementById("totalSum").innerText = totalSum;
-    }
+        function renderItem() {
+            const item = items[currentItem];
+            document.getElementById("name").innerText = item.name;
+            document.getElementById("desc").innerText = item.desc;
+            document.getElementById("price").innerText = item.price + " ₽";
+            document.getElementById("weight").innerText = "Вес: " + item.weight;
+            document.getElementById("photo").src = item.photo;
+            count = 1;
+            document.getElementById("count").innerText = count;
+        }
 
-    document.getElementById("clearCart").onclick = () => { cart = {}; updateCartTotals(); };
+        document.getElementById("plus").onclick = () => {
+            count++;
+            document.getElementById("count").innerText = count;
+        };
 
-    document.getElementById("usersubmit").onclick = function() {
-      let fio = document.getElementById("username").value;
-      let tel = document.getElementById("userphone").value;
-      let adr = document.getElementById("useraddress").value;
+        document.getElementById("minus").onclick = () => {
+            if (count > 1) {
+                count--;
+                document.getElementById("count").innerText = count;
+            }
+        };
 
-      if (fio == "" || tel == "" || totalSum == 0) {
-        alert("Заполните данные и добавьте булочки в корзину!");
-        return;
-      }
+        document.getElementById("next").onclick = () => {
+            currentItem = (currentItem + 1) % items.length;
+            renderItem();
+        };
 
-      document.getElementById("vash_zakaz_text").innerHTML = "<b>Имя:</b> " + fio + "<br><b>Тел:</b> " + tel + "<br><b>Адрес:</b> " + adr;
+        document.getElementById("prv").onclick = () => {
+            currentItem = (currentItem - 1 + items.length) % items.length;
+            renderItem();
+        };
 
-      let spisok = "";
-      for (let id in cart) {
-        let product = items.find(i => i.id === id);
-        spisok += "• " + product.name + " (" + cart[id] + " шт.)<br>";
-      }
-      document.getElementById("vash_spisok").innerHTML = spisok;
-      document.getElementById("itog_v_okne").innerText = totalSum;
+        document.getElementById("buy").onclick = () => {
+            const item = items[currentItem];
+            if (!cart[item.id]) cart[item.id] = 0;
+            cart[item.id] += count;
+            updateCartTotals();
+            tg.HapticFeedback.impactOccurred("light");
+        };
 
-      document.getElementById("okno_fon").style.display = "flex";
-    };
+        function updateCartTotals() {
+            let totalItems = 0;
+            totalSum = 0;
+            for (let id in cart) {
+                let product = items.find(i => i.id === id);
+                totalItems += cart[id];
+                totalSum += cart[id] * product.price;
+            }
+            document.getElementById("cartCount").innerText = totalItems;
+            document.getElementById("totalSum").innerText = totalSum;
+        }
 
-    document.getElementById("cancel_btn").onclick = function() {
-      document.getElementById("okno_fon").style.display = "none";
-    };
+        document.getElementById("clearCart").onclick = () => {
+            cart = {};
+            updateCartTotals();
+        };
 
-    document.getElementById("confirm_btn").onclick = function() {
-      let fio = document.getElementById("username").value;
-      let tel = document.getElementById("userphone").value;
-      let adr = document.getElementById("useraddress").value;
+        document.getElementById("usersubmit").onclick = function() {
+            let fio = document.getElementById("username").value;
+            let tel = document.getElementById("userphone").value;
+            let adr = document.getElementById("useraddress").value;
 
-      let resultText = "🍞 ЗАКАЗ ВОЛЬЧЕКА\nКлиент: " + fio + "\nТел: " + tel + "\nАдрес: " + adr + "\n---\n";
-      for (let id in cart) {
-        let product = items.find(i => i.id === id);
-        resultText += "• " + product.name + ": " + cart[id] + " шт.\n";
-      }
-      resultText += "---\nИтого: " + totalSum + " руб.";
+            if (fio === "" || tel === "" || totalSum === 0) {
+                alert("Заполните данные и добавьте булочки в корзину!");
+                return;
+            }
 
-      tg.sendData(resultText);
-    };
+            document.getElementById("vash_zakaz_text").innerHTML = 
+                "<b>Имя:</b> " + fio + "<br><b>Тел:</b> " + tel + "<br><b>Адрес:</b> " + adr;
 
-    renderItem();
-  </script>
+            let spisok = "";
+            for (let id in cart) {
+                let product = items.find(i => i.id === id);
+                spisok += "• " + product.name + " (" + cart[id] + " шт.)<br>";
+            }
+            document.getElementById("vash_spisok").innerHTML = spisok;
+            document.getElementById("itog_v_okne").innerText = totalSum;
+            document.getElementById("okno_fon").style.display = "flex";
+        };
+
+        document.getElementById("cancel_btn").onclick = () => {
+            document.getElementById("okno_fon").style.display = "none";
+        };
+
+        document.getElementById("confirm_btn").onclick = () => {
+            let fio = document.getElementById("username").value;
+            let tel = document.getElementById("userphone").value;
+            let adr = document.getElementById("useraddress").value;
+
+            let resultText = "🍞 ЗАКАЗ ВОЛЬЧЕКА\n" +
+                             "Клиент: " + fio + "\n" +
+                             "Тел: " + tel + "\n" +
+                             "Адрес: " + adr + "\n" +
+                             "---\n";
+            
+            for (let id in cart) {
+                let product = items.find(i => i.id === id);
+                resultText += "• " + product.name + ": " + cart[id] + " шт.\n";
+            }
+            
+            resultText += "---\nИтого: " + totalSum + " руб.";
+            tg.sendData(resultText);
+        };
+
+        renderItem();
+    </script>
 </body>
 </html>
